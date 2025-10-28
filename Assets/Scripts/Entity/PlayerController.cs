@@ -8,13 +8,6 @@ public class PlayerController : BaseController
     private Camera camera;
     private GameManager gameManager;
 
-
-    protected override void Start()
-    {
-        base.Start();
-        if (camera == null)
-            camera = Camera.main;
-    }
     public void Init(GameManager gameManager)
     {
         this.gameManager = gameManager;
@@ -23,6 +16,15 @@ public class PlayerController : BaseController
 
     protected override void HandleAction()
     {
+        if (camera == null)
+        {
+            camera = Camera.main;
+            if (camera == null)
+            {
+                // 아직 카메라가 준비 안 된 상태면 그냥 스킵
+                return;
+            }
+        }
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         movementDirection = new Vector2(horizontal, vertical).normalized;
@@ -44,17 +46,15 @@ public class PlayerController : BaseController
     }
 
     public override void Death()
-    {
+    { 
         base.Death();
         gameManager.GameOver();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // DreamHole과 부딪혔는지 확인
         if (collision.CompareTag("DreamHole"))
         {
-            Debug.Log("몬스터 잡으러 가보자");
             SceneManager.LoadScene("SampleScene");
         }
     }

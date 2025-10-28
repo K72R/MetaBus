@@ -26,12 +26,12 @@ public class CameraManager : MonoBehaviour
     {
         if (target == null)
         {
-            // Player를 씬에서 자동으로 찾아보기
+            // Player를 씬에서 찾아보기
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             if (player != null)
                 target = player.transform;
             else
-                return; // 아직 Player 없음
+                return; // Player 없음
         }
 
         Vector3 desiredPosition = target.position + offset;

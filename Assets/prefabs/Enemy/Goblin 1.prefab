@@ -167,7 +167,7 @@ MonoBehaviour:
   weaponPivot: {fileID: 2114271271942116884}
   knockbackDuration: 0
   WeaponPrefab: {fileID: 8054741555196778545, guid: 038d80871b32fd74c87172c6af2bedcc, type: 3}
-  followRange: 15
+  followRange: 100
 --- !u!1 &4945857067554828677
 GameObject:
   m_ObjectHideFlags: 0
